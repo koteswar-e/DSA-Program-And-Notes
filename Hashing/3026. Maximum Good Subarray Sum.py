@@ -44,36 +44,4 @@ class Solution:
         # Return the result, if no valid subarray is found, return 0
         return res if res != float('-inf') else 0
 
-# java
-"""
-import java.util.HashMap;
 
-class Solution {
-    public long maximumSubarraySum(int[] nums, int k) {
-        int n = nums.length;
-        long res = Long.MIN_VALUE;
-        long[] prefixSum = new long[n + 1];
-        HashMap<Integer, Integer> indexMap = new HashMap<>();
-        
-        for (int i = 0; i < n; i++) {
-            prefixSum[i + 1] = prefixSum[i] + nums[i];  
-            
-            if (indexMap.containsKey(nums[i] - k)) {
-                int ind = indexMap.get(nums[i] - k);
-                res = Math.max(res, prefixSum[i + 1] - prefixSum[ind]);
-            }
-            
-            if (indexMap.containsKey(nums[i] + k)) {
-                int ind = indexMap.get(nums[i] + k);
-                res = Math.max(res, prefixSum[i + 1] - prefixSum[ind]);
-            }
-            
-            if (!indexMap.containsKey(nums[i]) || prefixSum[i] - prefixSum[indexMap.get(nums[i])] <= 0) {
-                indexMap.put(nums[i], i);
-            }
-        }
-        
-        return res == Long.MIN_VALUE ? 0 : res;
-    }
-}
-"""
